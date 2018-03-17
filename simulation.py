@@ -39,16 +39,16 @@ def createHDF5(nx,ny,nz):
     nk = nz
 
     fModel = h5py.File(".\\simModel.hdf5", "w")
-    staticgrp = fModel.create_group("StaticGroup")
-    dynmicgrp = fModel.create_group("DynamicGroup")
-    pvtgrp    = fModel.create_group("PvtGroup")
-    dset_dx = fModel.create_dataset('StaticGroup/dx', (ni,nj,nk), dtype='f')
-    dset_dy = fModel.create_dataset('StaticGroup/dy', (ni,nj,nk), dtype='f')
-    dset_dz = fModel.create_dataset('StaticGroup/dz', (ni,nj,nk), dtype='f')
-    dset_por = fModel.create_dataset('StaticGroup/por', (ni,nj,nk), dtype='f')
-    dset_permx = fModel.create_dataset('StaticGroup/permx', (ni,nj,nk), dtype='f')
-    dset_permy = fModel.create_dataset('StaticGroup/permy', (ni,nj,nk), dtype='f')
-    dset_permz = fModel.create_dataset('StaticGroup/permz', (ni,nj,nk), dtype='f')
+    fModel.create_group("StaticGroup")
+    fModel.create_group("DynamicGroup")
+    fModel.create_group("PvtGroup")
+    fModel.create_dataset('StaticGroup/dx', (ni,nj,nk), dtype='f')
+    fModel.create_dataset('StaticGroup/dy', (ni,nj,nk), dtype='f')
+    fModel.create_dataset('StaticGroup/dz', (ni,nj,nk), dtype='f')
+    fModel.create_dataset('StaticGroup/por', (ni,nj,nk), dtype='f')
+    fModel.create_dataset('StaticGroup/permx', (ni,nj,nk), dtype='f')
+    fModel.create_dataset('StaticGroup/permy', (ni,nj,nk), dtype='f')
+    fModel.create_dataset('StaticGroup/permz', (ni,nj,nk), dtype='f')
 
     fModel.close()
 
