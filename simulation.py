@@ -14,6 +14,7 @@ sht = xw.Book.caller().sheets[0]
 gridVaryOpt={ }
 defaultDim = 200
 
+    
 def readGeneralInfo():
     nx = sht.range('B3').options(numbers=int).value
     ny = sht.range('C3').options(numbers=int).value
@@ -68,6 +69,7 @@ def defineGrid():
 
     fig = plt.figure()
     ax = fig.gca(projection='3d')
+
 
 # Make data.
     X = np.arange(-5, 5, 0.25)
@@ -225,6 +227,20 @@ def readGrid():
 
     fModel.flush()
     fModel.close()
+
+def readPvt():
+    df_PVTo = sht.range('B28:E39').options(pd.DataFrame).value
+    # df to hdf5
+    df_to_nparray = df_PVTo.to_records(index=True)
+    f = h5py.File('..\\simModel.hdf5','w')
+
+    # create dataset
+    f['PvtGroup/PVTO'] = df_to_nparray
+
+    # close connection to file
+    f.close()
+    
+    #sht.range('G29:J39').options(pd.DataFrame).value = df2
 
 def main():
     #sht = xw.Book.caller().sheets[0]
